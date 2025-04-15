@@ -1,0 +1,52 @@
+<h2>Gợi ý trang bị cho tướng</h2>
+
+<div class="search-container">
+    <input 
+        type="text" 
+        placeholder="Tìm kiếm tướng..." 
+        [(ngModel)]="searchText" 
+        (input)="filterChampions()" 
+        (keydown)="handleKeydown($event)"
+    />
+    <div *ngIf="filteredChampions.length > 0 && searchText" class="suggest-list">
+        <ul>
+            <li *ngFor="let champ of filteredChampions" (click)="selectChampion(champ)" class="suggestion-item">
+                {{ champ.name }}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="situation-container">
+    <label for="situation">Tình huống trận đấu: </label>
+    <select id="situation" [(ngModel)]="situation" (change)="updateItems()">
+        <option value="Standard">Bình thường</option>
+        <option value="Anti-tank">Chống Tank</option>
+        <option value="Anti-AP">Chống pháp sư</option>
+        <option value="Split-push">Chống đẩy lẻ</option>
+    </select>
+</div>
+
+<div *ngIf="selectedChampion" class="champion-details">
+    <h3>{{selectedChampion.name}} ({{selectedChampion.role}} - {{selectedChampion.type}})</h3>
+    <div *ngIf="items.length > 0; else noItems">
+        <p>Top trang bị đề xuất: </p>
+        <ul>
+            <li *ngFor="let item of items">
+                {{item.name}} - {{item.description}}
+            </li>
+        </ul>
+        <button (click)="saveBuild()">Lưu bộ trang bị</button>
+    </div>
+    <ng-template #noItems>Không có trang bị phù hợp</ng-template>
+</div>
+
+<div *ngIf="savedBuilds.length > 0" class="save-builds">
+    <h3>Bộ trang bị đã lưu</h3>
+    <ul>
+        <li *ngFor="let build of savedBuilds">
+            {{build.champion}} ({{build.situation}}): {{build.items.join(', ')}}
+            <button (click)="deleteBuild(build)">Xóa</button>
+        </li>
+    </ul>
+</div>

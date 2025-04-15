@@ -1,0 +1,34 @@
+<h2>Xây dựng đội hình LOL vui vẻ</h2>
+
+<div class="team-section">
+    <h3>Chọn tướng yêu thích: </h3>
+    <select [(ngModel)]="selectedChampion" (change)="addToTeam(selectedChampion)">
+        <option [ngValue]="null">Chọn 1 tướng</option>
+        <option *ngFor="let champ of Champions" [ngValue]="champ">
+            {{ champ.name }} ({{ champ.role }} - {{ champ.type }})
+        </option>
+    </select>
+</div>
+
+<div *ngIf="team.length === 5" class="warning">
+    Đội bạn đã đầy (5/5)! Hãy xóa bớt để thêm tướng mới
+</div>
+
+<div class="team-section">
+    <h3>Đội của bạn ({{team.length}}/5):</h3>
+    <ul>
+        <li *ngFor="let champ of team" [ngClass]="{'easy': champ.difficulty <= 2, hard: champ.difficulty > 2}">
+            {{champ.name}} ({{ champ.role }} - {{ champ.type }}) - Độ khó: {{ champ.difficulty }}/4
+            <button (click)="removeFromTeam(champ)">Xóa</button>
+        </li>
+    </ul>
+</div>
+
+<div class="suggestion-section">
+    <h3>Gợi ý cho bạn:</h3>
+    <ul>
+        <li *ngFor="let champ of suggestions">
+            {{champ.name}} ({{ champ.role }} - {{ champ.type }}) - Độ khó: {{ champ.difficulty }}/4 - {{champ.description}}
+        </li>
+    </ul>
+</div>

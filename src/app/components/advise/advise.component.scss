@@ -1,0 +1,70 @@
+h2 {
+    color: #1e90ff;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .team-section, .suggestion-section {
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  h3 {
+    color: #333;
+  }
+  
+  select {
+    padding: 8px;
+    font-size: 16px;
+    width: 200px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+  
+  button {
+    background-color: #ff5555;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  button:hover {
+    background-color: #cc0000;
+  }
+  
+  .suggestion-section li {
+    background-color: #e0f7fa;
+  }
+
+  .easy {
+    background-color: #d4edda;
+  }
+
+  .hard {
+    background-color: #f8d7da;
+  }
+
+  .warning {
+    color: white;
+    background-color: #ff5555;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+  }

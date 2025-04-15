@@ -1,0 +1,35 @@
+<h2>Danh sách ngọc phù hợp với tướng</h2>
+
+<div class="search-container">
+    <input 
+        type="text" 
+        placeholder="Tìm kiếm tướng..." 
+        [(ngModel)]="searchText" 
+        (input)="filterChampions()" 
+        (keydown)="handleKeydown($event)"
+    />
+    <div *ngIf="filteredChampions.length > 0 && searchText" class="suggestion-list">
+        <ul>
+            <li 
+                *ngFor="let champ of filteredChampions" 
+                (click)="selectChampion(champ)" 
+                class="suggestion-item"
+            >
+                {{champ.name}}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div *ngIf="selectedChampion" class="champion-details">
+    <h3>{{selectedChampion.name}} ( {{selectedChampion.role}} - {{selectedChampion.type}} )</h3>
+    <div *ngIf="getTopRunes(selectedChampion).length > 0; else noRune">
+        <p>Top 3 ngọc phù hợp:</p>
+        <ul>
+            <li *ngFor="let rune of getTopRunes(selectedChampion)">
+                {{rune.name}} - {{rune.description}}
+            </li>
+        </ul>
+    </div>
+    <ng-template #noRune>Không có ngọc phù hợp</ng-template>
+</div>
